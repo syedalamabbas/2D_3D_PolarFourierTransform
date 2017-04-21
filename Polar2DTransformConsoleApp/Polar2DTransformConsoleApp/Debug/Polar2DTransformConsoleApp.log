@@ -1,0 +1,18 @@
+﻿Build started 6/27/2016 1:25:16 AM.
+     1>Project "D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp.vcxproj" on node 2 (Build target(s)).
+     1>AddCudaCompileDeps:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I. /FIcuda_runtime.h /c D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Test2DRadonOnConsole.cu 
+       CudaBuild:
+         Compiling CUDA source file Test2DRadonOnConsole.cu...
+         cmd.exe /C "C:\Users\Alam Abbas\AppData\Local\Temp\tmpb9c3aef2a5434a5b8364ed9bc7ab873f.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\Test2DRadonOnConsole.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Test2DRadonOnConsole.cu"
+         
+         D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\Test2DRadonOnConsole.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Test2DRadonOnConsole.cu" 
+     1>D:/GitHub/RadonTransform/Polar2DTransformConsoleApp/Polar2DTransformConsoleApp/Test2DRadonOnConsole.cu(1): fatal error C1083: Cannot open include file: 'arrayfire.h': No such file or directory
+         Test2DRadonOnConsole.cu
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\BuildCustomizations\CUDA 7.5.targets(604,9): error MSB3721: The command ""C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\Test2DRadonOnConsole.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Test2DRadonOnConsole.cu"" exited with code 2.
+     1>Done Building Project "D:\GitHub\RadonTransform\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp\Polar2DTransformConsoleApp.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.79

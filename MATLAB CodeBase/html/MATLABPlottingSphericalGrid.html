@@ -1,0 +1,863 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>This script generates the spherical grid</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-09-06"><meta name="DC.source" content="MATLABPlottingSphericalGrid.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>This script generates the spherical grid</h1><!--introduction--><p>is a good solution</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Initialization</a></li><li><a href="#2">Normal Grid</a></li><li><a href="#3">Plotting Simple Spherical grid</a></li><li><a href="#4">Plotting single slice X-Y at an angle theta = 0, 18, perpendicular to Z axis</a></li><li><a href="#5">Designing the Angles</a></li><li><a href="#6">Plotting Spherical grid  X axis oriented block at 18 degrees apart</a></li><li><a href="#7">Plotting Spherical grid  X axis oriented block at 18 degrees apart</a></li><li><a href="#8">Plotting Spherical grid  X axis oriented block at 18 degrees apart</a></li><li><a href="#9">Plotting Spherical grid  X axis oriented block at 18 degrees apart</a></li></ul></div><h2>Initialization<a name="1"></a></h2><pre class="codeinput">clear <span class="string">all</span>;
+clc;
+close <span class="string">all</span>;
+
+
+N = 8;   <span class="comment">% Has to be even</span>
+gridSpacing =  [-N/2:N/2];
+
+<span class="comment">% Figure specifications</span>
+gridMarkerSize = 4;
+<span class="comment">% highlightMarkerSize = 8;</span>
+delay = .03;
+</pre><h2>Normal Grid<a name="2"></a></h2><pre class="codeinput">figure,axis <span class="string">equal</span>
+hold <span class="string">on</span>
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+<span class="keyword">for</span> k =1 :N+1
+    <span class="keyword">for</span> j  = 1: N+1                             <span class="comment">% Marking X-Y grid lines</span>
+        h =plot3(gridSpacing(k)*ones(1,N+1),gridSpacing(:),gridSpacing(j)*ones(1,N+1),<span class="string">'b'</span>, <span class="string">'LineWidth'</span>, .2);
+        h =plot3(gridSpacing(k)*ones(1,N+1),gridSpacing(j)*ones(1,N+1),gridSpacing(:),<span class="string">'b'</span>, <span class="string">'LineWidth'</span>, .2);
+        h =plot3(gridSpacing(:),gridSpacing(k)*ones(1,N+1),gridSpacing(j)*ones(1,N+1),<span class="string">'b'</span>, <span class="string">'LineWidth'</span>, .2);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">for</span> k =1 :N+1
+    <span class="keyword">for</span> j  = 1: N+1                             <span class="comment">% Plotting grid points</span>
+<span class="comment">%         pause(delay);</span>
+        h =plot3(gridSpacing(k),gridSpacing(j),gridSpacing(:),<span class="string">'bs'</span>);
+        set(h,<span class="string">'MarkerFaceColor'</span>,<span class="string">'g'</span>);
+        set(h,<span class="string">'MarkerSize'</span>,gridMarkerSize)
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+h = plot(0,0,<span class="string">'bs'</span>);                 <span class="comment">% DC value</span>
+set(h,<span class="string">'MarkerFaceColor'</span>,<span class="string">'k'</span>);
+set(h,<span class="string">'MarkerSize'</span>,gridMarkerSize)
+view(64,24)
+title(<span class="string">'\bf{Cube grid}'</span>)
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_01.png" alt=""> <h2>Plotting Simple Spherical grid<a name="3"></a></h2><pre class="codeinput">M = N+2;                 <span class="comment">% Total number of polar lines</span>
+deltaTheta = 180/M;     <span class="comment">% Angular sampling rate</span>
+deltaPhi  = deltaTheta;
+
+gridSpacing = -N/2:N/2;
+angles = [0:deltaTheta:180-deltaTheta];
+anglesPhi = [0:deltaPhi:180-deltaTheta];
+count = 0;
+figure,
+rotate3d <span class="string">on</span>;
+hold <span class="string">on</span>
+<span class="keyword">for</span> anglePhi = anglesPhi  <span class="comment">% As defined in the slides , phi (Azimuth or latitude ?) first then  theta (elevation or zenith) for spherical divisions</span>
+    <span class="keyword">for</span> angleTheta = angles
+<span class="comment">%            pause(delay+30* .05)</span>
+<span class="comment">%         h1 =plot3(gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta)*sind(anglePhi),gridSpacing*cosd(anglePhi),'g', 'LineWidth', 1);</span>
+
+                h1 =plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);  <span class="comment">% as defined in the paper</span>
+
+
+        <span class="keyword">if</span> (count == 0)
+<span class="comment">%             rotate(h1,[1 1 1],[ -13]);</span>
+        <span class="keyword">end</span>
+<span class="comment">%              pause(delay+3* .05)</span>
+<span class="comment">%         h1= plot3(gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta)*sind(anglePhi),gridSpacing*cosd(anglePhi),'ko');</span>
+
+                h1= plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta),<span class="string">'ko'</span>);
+
+
+        set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+        set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+         count = count +1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+view(64,24)
+title(<span class="string">'\bf{Spherical grid top view}'</span>)
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_02.png" alt=""> <h2>Plotting single slice X-Y at an angle theta = 0, 18, perpendicular to Z axis<a name="4"></a></h2><pre class="codeinput">currentAngleTheta = deltaTheta;
+figure,
+title([<span class="string">'\bf{Single polar slice of a spherical grid at \theta = }'</span>, num2str(currentAngleTheta), <span class="string">'^0'</span>])
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+  <span class="keyword">for</span> anglePhi = anglesPhi
+<span class="keyword">for</span> angleTheta = angles
+
+        pause(delay)
+        <span class="keyword">if</span> ( anglePhi == currentAngleTheta) <span class="comment">% angleTheta == currentAngleTheta ) %anglePhi</span>
+<span class="comment">%             h1 =plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*sind(angleTheta)*cosd(anglePhi),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);</span>
+<span class="comment">%             h1= plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*sind(angleTheta)*cosd(anglePhi),gridSpacing*sind(anglePhi),'ko');</span>
+
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*sind(anglePhi)*cosd(angleTheta),gridSpacing*sind(angleTheta),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*sind(anglePhi)*cosd(angleTheta),gridSpacing*sind(angleTheta),<span class="string">'ko'</span>);
+
+        set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+        set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+view(64,24)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_03.png" alt=""> <h2>Designing the Angles<a name="5"></a></h2><pre class="codeinput">angleTheta_multiple = 1;
+anglePhi_multiple = 1;
+
+currentAngleThetaWithFactor = angleTheta_multiple*deltaTheta; <span class="comment">%angleTheta can only be changed</span>
+currentAnglePhiWithFactor = anglePhi_multiple* deltaPhi;
+</pre><h2>Plotting Spherical grid  X axis oriented block at 18 degrees apart<a name="6"></a></h2><p>This is set of YZ blocks tiled along X -axis</p><pre class="codeinput">phi1 =  currentAnglePhiWithFactor;
+phi2 = 180 - currentAnglePhiWithFactor;
+theta1 =  currentAngleThetaWithFactor;
+theta2 = 180 - currentAngleThetaWithFactor;
+
+figure,
+title([<span class="string">'\bf{Spherical grid XX axis oriented block at angle \theta = ('</span>, num2str(theta1),<span class="string">'^0,'</span>, num2str(theta2),<span class="string">'^0), \phi =('</span>, num2str(phi1), <span class="string">'^0,'</span>, num2str(phi2), <span class="string">'^0)}'</span>])
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+<span class="keyword">for</span> angleTheta = angles
+    <span class="keyword">for</span> anglePhi = anglesPhi
+        pause(delay)
+        <span class="keyword">if</span> (angleTheta == theta1 || angleTheta == theta2  )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'ko'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+alpha_factor = gridSpacing*cosd(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor)  ;       <span class="comment">% Scaling needed in X-axis</span>
+beta_factor  = gridSpacing*sind(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);
+gamma_factor = gridSpacing*sind(currentAnglePhiWithFactor);
+
+plot3(alpha_factor, beta_factor, gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+
+plot3(alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i),  beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+view(156,28)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_04.png" alt=""> <h2>Plotting Spherical grid  X axis oriented block at 18 degrees apart<a name="7"></a></h2><p>This is set of YZ blocks tiled along X -axis</p><pre class="codeinput"><span class="comment">% currentAngleThetaWithFactor = 18; %angleTheta can only be changed</span>
+<span class="comment">% currentAnglePhiWithFactor = angleTheta_multiple*18;</span>
+phi1 = 90 - currentAnglePhiWithFactor;
+phi2 = 90 + currentAnglePhiWithFactor;
+theta1 =  currentAngleThetaWithFactor;
+theta2 = 180- currentAngleThetaWithFactor;
+
+figure,
+title([<span class="string">'\bf{Spherical grid XZ axis oriented block at angle \theta = ('</span>, num2str(theta1),<span class="string">'^0,'</span>, num2str(theta2),<span class="string">'^0), \phi =('</span>, num2str(phi1), <span class="string">'^0,'</span>, num2str(phi2), <span class="string">'^0)}'</span>])
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+<span class="keyword">for</span> angleTheta = angles
+    <span class="keyword">for</span> anglePhi = anglesPhi
+        pause(delay)
+        <span class="keyword">if</span> (angleTheta == theta1 || angleTheta == theta2 )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'ko'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+alpha_factor = gridSpacing*sind(currentAnglePhiWithFactor)*cosd(currentAngleThetaWithFactor);        <span class="comment">% Scaling needed in X-axis</span>
+beta_factor  = gridSpacing*sind(currentAnglePhiWithFactor)*sind(currentAngleThetaWithFactor);
+gamma_factor = gridSpacing*cosd(currentAnglePhiWithFactor)  ;
+
+plot3(alpha_factor, beta_factor, gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+
+plot3(alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_05.png" alt=""> <h2>Plotting Spherical grid  X axis oriented block at 18 degrees apart<a name="8"></a></h2><p>This is set of YZ blocks tiled along X -axis</p><pre class="codeinput"><span class="comment">% currentAngleThetaWithFactor = angleTheta_multiple*18; %angleTheta can only be changed</span>
+<span class="comment">% currentAnglePhiWithFactor =  18;</span>
+
+phi1 =  currentAnglePhiWithFactor;
+phi2 = 180 - currentAnglePhiWithFactor;
+theta1 = 90 - currentAngleThetaWithFactor;
+theta2 = 90 + currentAngleThetaWithFactor;
+
+figure,
+title([<span class="string">'\bf{Spherical grid YY axis oriented block at angle \theta = ('</span>, num2str(theta1),<span class="string">'^0,'</span>, num2str(theta2),<span class="string">'^0), \phi =('</span>, num2str(phi1), <span class="string">'^0,'</span>, num2str(phi2), <span class="string">'^0)}'</span>])
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+<span class="keyword">for</span> angleTheta = angles
+    <span class="keyword">for</span> anglePhi = anglesPhi
+        pause(delay)
+        <span class="keyword">if</span> (angleTheta == theta1 || floor( angleTheta) == floor(theta2) )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'ko'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+alpha_factor = gridSpacing*sind(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);<span class="comment">% Scaling needed in X-axis</span>
+beta_factor  = gridSpacing*cosd(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);
+gamma_factor = gridSpacing*sind(currentAnglePhiWithFactor);
+
+plot3(alpha_factor, beta_factor, gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+
+plot3(alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) ,- beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) ,- beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i), - beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_06.png" alt=""> <h2>Plotting Spherical grid  X axis oriented block at 18 degrees apart<a name="9"></a></h2><p>This is set of YZ blocks tiled along X -axis</p><pre class="codeinput"><span class="comment">% currentAngleThetaWithFactor = 18; %angleTheta can only be changed</span>
+<span class="comment">% currentAnglePhiWithFactor =  angleTheta_multiple*18;</span>
+phi1 = 90 - currentAnglePhiWithFactor;
+phi2 = 90 + currentAnglePhiWithFactor;
+theta1 = 90 - currentAngleThetaWithFactor;
+theta2 = 90 + currentAngleThetaWithFactor;
+
+figure,
+title([<span class="string">'\bf{Spherical grid YZ axis oriented block at angle \theta = ('</span>, num2str(theta1),<span class="string">'^0,'</span>, num2str(theta2),<span class="string">'^0), \phi =('</span>, num2str(phi1), <span class="string">'^0,'</span>, num2str(phi2), <span class="string">'^0)}'</span>])
+xlabel (<span class="string">'\bf{x \rightarrow}'</span>)
+ylabel (<span class="string">'\bf{y \rightarrow}'</span>)
+zlabel(<span class="string">'\bf{z \rightarrow}'</span>)
+axis <span class="string">equal</span>
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+<span class="keyword">for</span> angleTheta = angles
+    <span class="keyword">for</span> anglePhi = anglesPhi
+        pause(delay)
+        <span class="keyword">if</span> (angleTheta == theta1 || floor(angleTheta) == floor(theta2) )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'g'</span>, <span class="string">'LineWidth'</span>, 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),<span class="string">'ko'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerFaceColor'</span>,<span class="string">'r'</span>);
+            set(h1,<span class="string">'MarkerSize'</span>,gridMarkerSize+1)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+alpha_factor = gridSpacing*sind(currentAnglePhiWithFactor)*sind(currentAngleThetaWithFactor);      <span class="comment">% Scaling needed in X-axis</span>
+beta_factor  = gridSpacing*sind(currentAnglePhiWithFactor)*cosd(currentAngleThetaWithFactor);
+gamma_factor = gridSpacing*cosd(currentAnglePhiWithFactor)  ;
+
+plot3(alpha_factor, beta_factor, gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+
+plot3(alpha_factor, beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, <span class="string">'LineWidth'</span>, 1.7)
+
+<span class="keyword">for</span> i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+<span class="keyword">for</span> i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), <span class="string">'LineWidth'</span>, 1.7)
+<span class="keyword">end</span>
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="MATLABPlottingSphericalGrid_07.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% This script generates the spherical grid
+% is a good solution
+
+
+%% Initialization
+clear all;
+clc;
+close all;
+
+
+N = 8;   % Has to be even 
+gridSpacing =  [-N/2:N/2];
+
+% Figure specifications
+gridMarkerSize = 4;
+% highlightMarkerSize = 8;
+delay = .03; 
+
+
+%% Normal Grid
+figure,axis equal
+hold on
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+for k =1 :N+1
+    for j  = 1: N+1                             % Marking X-Y grid lines
+        h =plot3(gridSpacing(k)*ones(1,N+1),gridSpacing(:),gridSpacing(j)*ones(1,N+1),'b', 'LineWidth', .2);
+        h =plot3(gridSpacing(k)*ones(1,N+1),gridSpacing(j)*ones(1,N+1),gridSpacing(:),'b', 'LineWidth', .2);
+        h =plot3(gridSpacing(:),gridSpacing(k)*ones(1,N+1),gridSpacing(j)*ones(1,N+1),'b', 'LineWidth', .2);
+    end
+end
+for k =1 :N+1
+    for j  = 1: N+1                             % Plotting grid points
+%         pause(delay);
+        h =plot3(gridSpacing(k),gridSpacing(j),gridSpacing(:),'bs');
+        set(h,'MarkerFaceColor','g');
+        set(h,'MarkerSize',gridMarkerSize) 
+    end
+end
+h = plot(0,0,'bs');                 % DC value
+set(h,'MarkerFaceColor','k');
+set(h,'MarkerSize',gridMarkerSize)
+view(64,24)
+title('\bf{Cube grid}')
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}')
+zlabel('\bf{z \rightarrow}')
+hold off
+
+
+%% Plotting Simple Spherical grid 
+M = N+2;                 % Total number of polar lines
+deltaTheta = 180/M;     % Angular sampling rate
+deltaPhi  = deltaTheta;
+
+gridSpacing = -N/2:N/2;
+angles = [0:deltaTheta:180-deltaTheta];  
+anglesPhi = [0:deltaPhi:180-deltaTheta];
+count = 0; 
+figure,
+rotate3d on;
+hold on
+for anglePhi = anglesPhi  % As defined in the slides , phi (Azimuth or latitude ?) first then  theta (elevation or zenith) for spherical divisions 
+    for angleTheta = angles
+%            pause(delay+30* .05)
+%         h1 =plot3(gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta)*sind(anglePhi),gridSpacing*cosd(anglePhi),'g', 'LineWidth', 1);
+        
+                h1 =plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta),'g', 'LineWidth', 1);  % as defined in the paper
+
+        
+        if (count == 0)
+%             rotate(h1,[1 1 1],[ -13]); 
+        end 
+%              pause(delay+3* .05)
+%         h1= plot3(gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta)*sind(anglePhi),gridSpacing*cosd(anglePhi),'ko');
+        
+                h1= plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*cosd(angleTheta)*sind(anglePhi),gridSpacing*sind(angleTheta),'ko');
+
+        
+        set(h1,'MarkerFaceColor','r');
+        set(h1,'MarkerSize',gridMarkerSize+1)
+         count = count +1;
+    end
+end
+ 
+view(64,24)
+title('\bf{Spherical grid top view}') 
+xlabel ('\bf{x \rightarrow}') 
+ylabel ('\bf{y \rightarrow}')  
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on  
+hold off     
+
+
+%% Plotting single slice X-Y at an angle theta = 0, 18, perpendicular to Z axis
+currentAngleTheta = deltaTheta;
+figure,
+title(['\bf{Single polar slice of a spherical grid at \theta = }', num2str(currentAngleTheta), '^0'])
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}')
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on
+hold on
+  for anglePhi = anglesPhi 
+for angleTheta = angles
+  
+        pause(delay)
+        if ( anglePhi == currentAngleTheta) % angleTheta == currentAngleTheta ) %anglePhi 
+%             h1 =plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*sind(angleTheta)*cosd(anglePhi),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);
+%             h1= plot3(gridSpacing*cosd(angleTheta)*cosd(anglePhi),gridSpacing*sind(angleTheta)*cosd(anglePhi),gridSpacing*sind(anglePhi),'ko');
+            
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*sind(anglePhi)*cosd(angleTheta),gridSpacing*sind(angleTheta),'g', 'LineWidth', 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*sind(anglePhi)*cosd(angleTheta),gridSpacing*sind(angleTheta),'ko');
+            
+        set(h1,'MarkerFaceColor','r');
+        set(h1,'MarkerSize',gridMarkerSize+1)
+        end
+    end
+end 
+view(64,24)
+hold off 
+
+%% Designing the Angles
+angleTheta_multiple = 1;
+anglePhi_multiple = 1;
+
+currentAngleThetaWithFactor = angleTheta_multiple*deltaTheta; %angleTheta can only be changed
+currentAnglePhiWithFactor = anglePhi_multiple* deltaPhi;
+
+
+%% Plotting Spherical grid  X axis oriented block at 18 degrees apart 
+% This is set of YZ blocks tiled along X -axis
+
+phi1 =  currentAnglePhiWithFactor;
+phi2 = 180 - currentAnglePhiWithFactor;
+theta1 =  currentAngleThetaWithFactor;
+theta2 = 180 - currentAngleThetaWithFactor;
+
+figure, 
+title(['\bf{Spherical grid XX axis oriented block at angle \theta = (', num2str(theta1),'^0,', num2str(theta2),'^0), \phi =(', num2str(phi1), '^0,', num2str(phi2), '^0)}'])
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}') 
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on
+hold on
+for angleTheta = angles  
+    for anglePhi = anglesPhi
+        pause(delay)
+        if (angleTheta == theta1 || angleTheta == theta2  )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'ko');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerSize',gridMarkerSize+1)
+        end 
+    end  
+end 
+
+alpha_factor = gridSpacing*cosd(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor)  ;       % Scaling needed in X-axis
+beta_factor  = gridSpacing*sind(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);
+gamma_factor = gridSpacing*sind(currentAnglePhiWithFactor);
+ 
+plot3(alpha_factor, beta_factor, gamma_factor, 'LineWidth', 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+
+plot3(alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i),  beta_factor(1,i) , -gamma_factor(1,i) ]; 
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+view(156,28)
+hold off  
+
+
+%% Plotting Spherical grid  X axis oriented block at 18 degrees apart 
+% This is set of YZ blocks tiled along X -axis
+   
+% currentAngleThetaWithFactor = 18; %angleTheta can only be changed
+% currentAnglePhiWithFactor = angleTheta_multiple*18;
+phi1 = 90 - currentAnglePhiWithFactor;
+phi2 = 90 + currentAnglePhiWithFactor;
+theta1 =  currentAngleThetaWithFactor;
+theta2 = 180- currentAngleThetaWithFactor;
+ 
+figure, 
+title(['\bf{Spherical grid XZ axis oriented block at angle \theta = (', num2str(theta1),'^0,', num2str(theta2),'^0), \phi =(', num2str(phi1), '^0,', num2str(phi2), '^0)}'])
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}') 
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on
+hold on 
+for angleTheta = angles  
+    for anglePhi = anglesPhi
+        pause(delay)
+        if (angleTheta == theta1 || angleTheta == theta2 )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'ko');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerSize',gridMarkerSize+1)
+        end 
+    end  
+end  
+
+alpha_factor = gridSpacing*sind(currentAnglePhiWithFactor)*cosd(currentAngleThetaWithFactor);        % Scaling needed in X-axis
+beta_factor  = gridSpacing*sind(currentAnglePhiWithFactor)*sind(currentAngleThetaWithFactor); 
+gamma_factor = gridSpacing*cosd(currentAnglePhiWithFactor)  ;
+
+plot3(alpha_factor, beta_factor, gamma_factor, 'LineWidth', 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+
+plot3(alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+hold off  
+
+%% Plotting Spherical grid  X axis oriented block at 18 degrees apart 
+% This is set of YZ blocks tiled along X -axis
+
+% currentAngleThetaWithFactor = angleTheta_multiple*18; %angleTheta can only be changed
+% currentAnglePhiWithFactor =  18;
+
+phi1 =  currentAnglePhiWithFactor;
+phi2 = 180 - currentAnglePhiWithFactor;
+theta1 = 90 - currentAngleThetaWithFactor;
+theta2 = 90 + currentAngleThetaWithFactor;
+
+figure, 
+title(['\bf{Spherical grid YY axis oriented block at angle \theta = (', num2str(theta1),'^0,', num2str(theta2),'^0), \phi =(', num2str(phi1), '^0,', num2str(phi2), '^0)}'])
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}') 
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on
+hold on
+for angleTheta = angles  
+    for anglePhi = anglesPhi
+        pause(delay)
+        if (angleTheta == theta1 || floor( angleTheta) == floor(theta2) )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'ko');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerSize',gridMarkerSize+1)
+        end 
+    end  
+end 
+
+
+alpha_factor = gridSpacing*sind(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);% Scaling needed in X-axis
+beta_factor  = gridSpacing*cosd(currentAngleThetaWithFactor)*cosd(currentAnglePhiWithFactor);       
+gamma_factor = gridSpacing*sind(currentAnglePhiWithFactor);
+ 
+plot3(alpha_factor, beta_factor, gamma_factor, 'LineWidth', 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+ 
+plot3(alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) ,- beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [alpha_factor(1, i) ,- beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [-alpha_factor(1,i), - beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+hold off  
+
+
+%% Plotting Spherical grid  X axis oriented block at 18 degrees apart 
+% This is set of YZ blocks tiled along X -axis 
+
+% currentAngleThetaWithFactor = 18; %angleTheta can only be changed
+% currentAnglePhiWithFactor =  angleTheta_multiple*18;
+phi1 = 90 - currentAnglePhiWithFactor;
+phi2 = 90 + currentAnglePhiWithFactor;
+theta1 = 90 - currentAngleThetaWithFactor;
+theta2 = 90 + currentAngleThetaWithFactor; 
+
+figure, 
+title(['\bf{Spherical grid YZ axis oriented block at angle \theta = (', num2str(theta1),'^0,', num2str(theta2),'^0), \phi =(', num2str(phi1), '^0,', num2str(phi2), '^0)}'])
+xlabel ('\bf{x \rightarrow}')
+ylabel ('\bf{y \rightarrow}') 
+zlabel('\bf{z \rightarrow}')
+axis equal
+axis ([-N/2 N/2 -N/2 N/2 -N/2 N/2])
+grid on
+hold on 
+for angleTheta = angles  
+    for anglePhi = anglesPhi
+        pause(delay)
+        if (angleTheta == theta1 || floor(angleTheta) == floor(theta2) )
+            h1 =plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'g', 'LineWidth', 1);
+            h1= plot3(gridSpacing*cosd(anglePhi)*cosd(angleTheta),gridSpacing*cosd(anglePhi)*sind(angleTheta),gridSpacing*sind(anglePhi),'ko');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerFaceColor','r');
+            set(h1,'MarkerSize',gridMarkerSize+1)
+        end 
+    end  
+end   
+
+
+alpha_factor = gridSpacing*sind(currentAnglePhiWithFactor)*sind(currentAngleThetaWithFactor);      % Scaling needed in X-axis
+beta_factor  = gridSpacing*sind(currentAnglePhiWithFactor)*cosd(currentAngleThetaWithFactor);  
+gamma_factor = gridSpacing*cosd(currentAnglePhiWithFactor)  ;
+
+plot3(alpha_factor, beta_factor, gamma_factor, 'LineWidth', 1.7)
+plot3(-alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+
+plot3(alpha_factor, beta_factor, -gamma_factor, 'LineWidth', 1.7)
+plot3(alpha_factor, -beta_factor, -gamma_factor, 'LineWidth', 1.7)
+
+for i=1: N+1
+    P1 = [alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i),  -beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+for i=1: N+1
+    P1 = [-alpha_factor(1, i) , beta_factor(1,i) , -gamma_factor(1,i)];
+    P2 = [alpha_factor(1,i), beta_factor(1,i) , -gamma_factor(1,i) ];
+    pts = [P1; P2];
+    plot3(pts(:,1), pts(:,2), pts(:,3), 'LineWidth', 1.7)
+end
+hold off  
+##### SOURCE END #####
+--></body></html>

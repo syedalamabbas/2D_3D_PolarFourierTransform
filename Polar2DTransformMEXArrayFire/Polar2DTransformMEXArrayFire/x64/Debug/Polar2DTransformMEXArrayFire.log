@@ -1,0 +1,42 @@
+﻿Build started 6/27/2016 12:46:13 AM.
+     1>Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" on node 2 (Build target(s)).
+     1>CudaBuild:
+         Compiling CUDA source file CUDAMexArrayFire2DPolarDFT.cu...
+         cmd.exe /C "C:\Users\Alam Abbas\AppData\Local\Temp\tmpb9e171a4338c4c6dab30e017953023b4.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64"  -I"C:\Program Files\ArrayFire\v3/include" -I"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\extern\include" -I"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\toolbox\distcomp\gpu\extern\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -DMATLAB_MEX_FILE -D_WINDLL -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o x64\Debug\CUDAMexArrayFire2DPolarDFT.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\CUDAMexArrayFire2DPolarDFT.cu"
+         
+         D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64"  -I"C:\Program Files\ArrayFire\v3/include" -I"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\extern\include" -I"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\toolbox\distcomp\gpu\extern\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -DMATLAB_MEX_FILE -D_WINDLL -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o x64\Debug\CUDAMexArrayFire2DPolarDFT.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\CUDAMexArrayFire2DPolarDFT.cu" 
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(215): warning : initial value of reference to non-const must be an lvalue
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(215): warning : initial value of reference to non-const must be an lvalue
+         CUDAMexArrayFire2DPolarDFT.cu
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(173): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(193): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(194): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(195): warning C4267: '=' : conversion from 'size_t' to 'int', possible loss of data
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(260): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(261): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.mexw64" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\ArrayFire\v3/lib" /LIBPATH:"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\extern\lib\win64\microsoft" /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib afcuda.lib libut.lib libmx.lib libmex.lib libmat.lib gpu.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Debug\Polar2DTransformMEXArrayFire.mexw64.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.pdb" /MAP /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.lib" /MACHINE:X64 /PROFILE  /EXPORT:mexFunction /DLL x64\Debug\CUDAMexArrayFire2DPolarDFT.cu.obj
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+            Creating library D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.lib and object D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.exp
+         Polar2DTransformMEXArrayFire.vcxproj -> D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\Polar2DTransformMEXArrayFire.mexw64
+       Manifest:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\mt.exe /nologo /verbose /out:"x64\Debug\Polar2DTransformMEXArrayFire.mexw64.manifest" /manifest x64\Debug\Polar2DTransformMEXArrayFire.mexw64.intermediate.manifest
+       PostBuildEvent:
+         echo copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         echo copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         :VCEnd
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart32_75.dll
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart64_75.dll
+                 2 file(s) copied.
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Debug\"
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64_30_0.dll
+                 1 file(s) copied.
+     1>Done Building Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.87

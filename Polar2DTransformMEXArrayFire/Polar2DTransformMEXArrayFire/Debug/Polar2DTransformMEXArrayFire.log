@@ -1,0 +1,16 @@
+﻿Build started 6/27/2016 12:41:54 AM.
+     1>Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" on node 2 (Build target(s)).
+     1>CudaBuild:
+         Compiling CUDA source file CUDAMexArrayFire2DPolarDFT.cu...
+         cmd.exe /C "C:\Users\Alam Abbas\AppData\Local\Temp\tmpe8efa203652c4866aafdbb1c9cf2e8c9.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\CUDAMexArrayFire2DPolarDFT.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\CUDAMexArrayFire2DPolarDFT.cu"
+         
+         D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\CUDAMexArrayFire2DPolarDFT.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\CUDAMexArrayFire2DPolarDFT.cu" 
+     1>D:/GitHub/RadonTransform/Polar2DTransformMEXArrayFire/Polar2DTransformMEXArrayFire/CUDAMexArrayFire2DPolarDFT.cu(8): fatal error C1083: Cannot open include file: 'arrayfire.h': No such file or directory
+         CUDAMexArrayFire2DPolarDFT.cu
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\BuildCustomizations\CUDA 7.5.targets(604,9): error MSB3721: The command ""C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\CUDAMexArrayFire2DPolarDFT.cu.obj "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\CUDAMexArrayFire2DPolarDFT.cu"" exited with code 2.
+     1>Done Building Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.34

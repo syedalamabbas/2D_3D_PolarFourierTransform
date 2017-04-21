@@ -1,0 +1,27 @@
+﻿Build started 1/22/2017 9:23:54 PM.
+     1>Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.mexw64" /NOLOGO /LIBPATH:"C:\Program Files\ArrayFire\v3/lib" /LIBPATH:"C:\Program Files\MATLAB\MATLAB Production Server\R2015a\extern\lib\win64\microsoft" /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\x64" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib afcuda.lib libut.lib libmx.lib libmex.lib libmat.lib gpu.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\Polar2DTransformMEXArrayFire.mexw64.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.pdb" /MAP /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.lib" /MACHINE:X64 /PROFILE  /EXPORT:mexFunction /DLL x64\Release\CUDAMexArrayFire2DPolarDFT.cu.obj
+            Creating library D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.lib and object D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.exp
+         LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+         Polar2DTransformMEXArrayFire.vcxproj -> D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\Polar2DTransformMEXArrayFire.mexw64
+       Manifest:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\mt.exe /nologo /verbose /out:"x64\Release\Polar2DTransformMEXArrayFire.mexw64.manifest" /manifest x64\Release\Polar2DTransformMEXArrayFire.mexw64.intermediate.manifest
+       PostBuildEvent:
+         echo copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         echo copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         :VCEnd
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart32_75.dll
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\cudart64_75.dll
+                 2 file(s) copied.
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64*.dll" "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\x64\Release\"
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\nvvm\bin\nvvm64_30_0.dll
+                 1 file(s) copied.
+     1>Done Building Project "D:\GitHub\RadonTransform\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire\Polar2DTransformMEXArrayFire.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.52
